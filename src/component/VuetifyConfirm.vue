@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <v-dialog v-model="value" max-width="500px" persistent @keydown.esc="cancelAction()">
+=======
+  <v-dialog @input="cancelAction()" v-model="value" max-width="500px" @keydown.esc="cancelAction()">
+>>>>>>> 8417f79... update: non persistent
     <v-card>
       <v-card-title class="headline">
         {{title}}
@@ -18,27 +22,29 @@
 
 <script>
 export default {
-  props: ["title", "text", "cancelText", "confirmText", "value"],
+  props: ["title", "text", "cancelText", "confirmText"],
   data() {
     return {
+      value:false,
       loading: false
     };
   },
-  watch: {
-    value: function() {
-      this.resetState();
-    }
-  },
   methods: {
+    open(){
+      this.resetState();
+    },
     resetState() {
+      this.value = true;
       this.loading = false;
     },
     confirmAction() {
       this.loading = true;
+      this.value = false;
       this.$emit("confirmAction");
     },
     cancelAction() {
       this.loading = true;
+      this.value = false;
       this.$emit("cancelAction");
     }
   }

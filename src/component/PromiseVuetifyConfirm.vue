@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <confirmDialog :value="state.isOpen" :title="state.title" :text="state.text" :cancelText="state.cancelText" :confirmText="state.confirmText" v-on:cancelAction="() => this.emmitClose(false)" v-on:confirmAction="() => this.emmitClose(true)" />
+=======
+  <confirmDialog ref="dialog" :title="state.title" :text="state.text" :cancelText="state.cancelText" :confirmText="state.confirmText" v-on:cancelAction="() => this.emmitClose(false)" v-on:confirmAction="() => this.emmitClose(true)" />
+>>>>>>> 8417f79... update: non persistent
 </template>
 
 <script>
@@ -21,6 +25,9 @@ export default {
   methods: {
     commit: function(newState) {
       this.state = newState;
+      if(this.state.isOpen){
+        this.$refs.dialog.open()
+      }
     },
     setTitle: function(title) {
       this.state.title = title;
@@ -37,9 +44,6 @@ export default {
     setPromiseHandler: function(promiseRejecter, promiseResolver) {
       this.state.promiseRejecter = promiseRejecter;
       this.state.promiseResolver = promiseResolver;
-    },
-    show: function() {
-      this.state.isOpen = true;
     },
     emmitClose: function(state) {
       if (this.state.promiseResolver) {

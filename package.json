@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "vuetify-vuejs-confirmdialog",
   "version": "0.0.17",
+=======
+  "name": "vuetify-confirmdialog",
+  "version": "0.9.3",
+>>>>>>> 8417f79... update: non persistent
   "description": "Vuetify VueJS Confirm Component with Promise support",
   "main": "dist/index.js",
   "devDependencies": {
