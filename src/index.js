@@ -32,7 +32,7 @@ Plugin.prototype.destroy = function() {
   }
 };
 
-Plugin.prototype.open = function(title, text, cancelText, confirmText) {
+Plugin.prototype.open = function(title, text, cancelText="キャンセル", confirmText="OK") {
   this.mountIfNotMounted();
   return new Promise((resolve, reject) => {
     let localOptions = {};
@@ -54,7 +54,7 @@ Plugin.install = function(Vue, options) {
   Vue.vuetifyConfirmDialog = new Plugin(Vue, options);
 
   Object.defineProperties(Vue.prototype, {
-    $vuetifyConfirmDialog: {
+    $confirm: {
       get() {
         return Vue.vuetifyConfirmDialog;
       }

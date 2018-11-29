@@ -1,19 +1,17 @@
 <template>
-<<<<<<< HEAD
-  <v-dialog v-model="value" max-width="500px" persistent @keydown.esc="cancelAction()">
-=======
-  <v-dialog @input="cancelAction()" v-model="value" max-width="500px" @keydown.esc="cancelAction()">
->>>>>>> 8417f79... update: non persistent
+  <v-dialog v-model="value" max-width="500px" @input="cancelAction()" @keydown.esc="cancelAction()">
     <v-card>
-      <v-card-title class="headline">
-        {{title}}
-      </v-card-title>
-      <v-card-text>
-        {{text}}
-      </v-card-text>
+      <v-card-title class="headline">{{title}}</v-card-title>
+      <v-card-text>{{text}}</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="red" v-if="!this.loading" @click="cancelAction" flat :loading="this.loading">{{cancelText}}</v-btn>
+        <v-btn
+          color="red"
+          v-if="!this.loading"
+          @click="cancelAction"
+          flat
+          :loading="this.loading"
+        >{{cancelText}}</v-btn>
         <v-btn color="green" @click="confirmAction" flat :loading="this.loading">{{confirmText}}</v-btn>
       </v-card-actions>
     </v-card>
@@ -22,31 +20,35 @@
 
 <script>
 export default {
-  props: ["title", "text", "cancelText", "confirmText"],
+  props: ['title', 'text', 'cancelText', 'confirmText'],
   data() {
     return {
-      value:false,
+      value: false,
       loading: false
-    };
+    }
+  },
+  watch: {
+    value: function() {
+      this.resetState()
+    }
   },
   methods: {
-    open(){
-      this.resetState();
+    open() {
+      this.value = true
     },
     resetState() {
-      this.value = true;
-      this.loading = false;
+      this.loading = false
     },
     confirmAction() {
-      this.loading = true;
-      this.value = false;
-      this.$emit("confirmAction");
+      this.loading = true
+      this.value = false
+      this.$emit('confirmAction')
     },
     cancelAction() {
-      this.loading = true;
-      this.value = false;
-      this.$emit("cancelAction");
+      this.loading = true
+      this.value = false
+      this.$emit('cancelAction')
     }
   }
-};
+}
 </script>
